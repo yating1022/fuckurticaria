@@ -2,8 +2,10 @@ import asyncio
 import logging
 import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import Depends, FastAPI
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.admin import router as admin_router
@@ -80,3 +82,18 @@ app.include_router(ai_router, dependencies=_auth_dep)
 @app.get("/api/health")
 async def health():
     return {"message": "后端运行正常 ✓", "status": "ok"}
+
+
+STATIC_DIR = Path(__file__).parent / "static"
+
+
+@app.get("/{full_path:path}")
+async def serve_spa(full_path: str):
+    if STATIC_DIR.is_dir():
+        file_path = STATIC_DIR / full_path
+        if file_path.is_file():
+            return FileResponse(file_path)
+        index = STATIC_DIR / "index.html"
+        if index.is_file():
+            return FileResponse(index)
+    return {"detail": "Not Found"}

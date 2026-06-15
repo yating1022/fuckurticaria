@@ -1,9 +1,9 @@
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 
 const BASE = '/api'
 
 export function useApi<T>() {
-  const data = ref<T | null>(null) as { value: T | null }
+  const data: Ref<T | null> = ref(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -39,9 +39,7 @@ cp backend/.env.example backend/.env
 docker compose up -d --build
 ```
 
-服务启动后：
-- 前端访问：`http://localhost`
-- 后端 API：`http://localhost:5241/api/health`
+服务启动后访问 `http://localhost:5241`，前后端均由此单一容器提供。
 
 ### 3. 停止服务
 
@@ -92,6 +90,5 @@ npm run dev                # 默认端口 2563
 
 | 服务 | 端口 |
 |------|------|
-| 前端开发服务器 | 2563 |
-| 后端 API | 5241 |
-| Docker 前端 | 80 |
+| 前端开发服务器（Vite） | 2563 |
+| 后端 API / 生产服务 | 5241 |

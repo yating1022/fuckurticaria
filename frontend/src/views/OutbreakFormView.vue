@@ -23,6 +23,15 @@ const form = ref<OutbreakCreate>({
   trigger_guess: '',
 })
 
+const triggerGuess = computed({
+  get: () => form.value.trigger_guess ?? '',
+  set: (v: string) => { form.value.trigger_guess = v },
+})
+const notes = computed({
+  get: () => form.value.notes ?? '',
+  set: (v: string) => { form.value.notes = v },
+})
+
 const bodyParts = ['头部', '面部', '颈部', '手臂', '手部', '躯干', '背部', '腿部', '脚部', '全身']
 const selectedParts = ref<string[]>([])
 
@@ -106,14 +115,14 @@ async function submit() {
 
         <!-- 触发源 -->
         <HandDrawnInput
-          v-model="form.trigger_guess"
+          v-model="triggerGuess"
           label="猜测触发源"
           placeholder="例如：压力、海鲜、天气变化..."
         />
 
         <!-- 备注 -->
         <HandDrawnInput
-          v-model="form.notes"
+          v-model="notes"
           label="备注"
           type="textarea"
           placeholder="补充说明..."
