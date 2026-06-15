@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --font-marker: "Kalam", cursive;
+  --font-hand: "Patrick Hand", cursive;
+
+  --color-paper: #fdfbf7;
+  --color-pencil: #2d2d2d;
+  --color-muted: #e5e0d8;
+  --color-accent: #ff4d4d;
+  --color-blue: #2d5da1;
+  --color-postit: #fff9c4;
+}
+
+body {
+  background-image: radial-gradient(#e5e0d8 1px, transparent 1px);
+  background-size: 24px 24px;
+}
